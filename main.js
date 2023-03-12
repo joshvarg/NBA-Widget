@@ -4,8 +4,10 @@ req.headers = {"Content-type": "application/json;charset=UTF-8"};
 var res = await req.loadJSON();
 
 let games = res.events;
+let text = "";
+games.forEach(game => text.concat(game.name, " "));
 let w = new ListWidget();
-let text = w.addText(games);
+let t = w.addText(text);
 
 
 Script.setWidget(w);

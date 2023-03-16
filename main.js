@@ -3,12 +3,36 @@ var req = new Request(url);
 req.headers = {"Content-type": "application/json;charset=UTF-8"};
 var res = await req.loadJSON();
 
-let games = res.events;
-let text = "";
-games.forEach(game => text = text.concat(game.name, " "));
-let w = new ListWidget();
-let t = w.addText(text);
+const lakers = new RegExp("[Ll]akers");
+const pistons = new RegExp("[Pp]istons");
+function checkGames(matchup, teamName){
+  var bool = false;
+  let found = matchup.match(teamName);
+  if (found.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
+function teamPlaying(todayGames, teamName){
+  var index = -1;
+  todayGames.forEach((game, idx) => {
+    if (checkGames(game.name, teamName)) {
+      index = idx;
+    }
+  }
+  return index;
+}
+
+let w = new ListWidget();
+
+let eventsidx = teamPlaying(res.events, pistons);
+if (eventsidx > -1) {
+  var game = res.events[eventsidx];
+  var name = game.name
+  let t = w.addText(text);
+}
 
 Script.setWidget(w);
 Script.complete();

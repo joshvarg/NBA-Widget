@@ -8,7 +8,7 @@ const pistons = new RegExp("[Pp]istons");
 function checkGames(matchup, teamName){
   var bool = false;
   let found = matchup.match(teamName);
-  if (found.length > 0) {
+  if (found) {
     return true;
   } else {
     return false;
@@ -21,7 +21,7 @@ function teamPlaying(todayGames, teamName){
     if (checkGames(game.name, teamName)) {
       index = idx;
     }
-  }
+  });
   return index;
 }
 
@@ -31,7 +31,7 @@ let eventsidx = teamPlaying(res.events, pistons);
 if (eventsidx > -1) {
   var game = res.events[eventsidx];
   var name = game.name
-  let t = w.addText(text);
+  let t = w.addText(name);
 }
 
 Script.setWidget(w);

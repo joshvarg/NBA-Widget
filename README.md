@@ -24,4 +24,4 @@ An iOS Widget for tracking your favorite NBA team, made with Scriptable
 
 ## Authors
 
-[Joshua Varghese](github.com/joshvarg)
+[Joshua Varghese](https://github.com/joshvarg)
